@@ -28,4 +28,6 @@ Smart Home enables users to remotely monitor and manage applicances such as ligh
 
 ## B. How the final RPI set-up looks like
 
-[IOT-CA2](Images/Graph.jpeg)
+## C. Wep Application 
+
+[](Images/Graph.jpeg)
