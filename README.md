@@ -26,8 +26,6 @@ ST 0324 Internet of Things (IOT)
 
 Smart Home enables users to remotely monitor and manage applicances such as lighting, humidity and door access. There are several features to our project. Firstly, users will be able to view the humidity of their house via a web application. Secondly, users will be able to control their lightings remotely by clicking the on and off button on the web application. Aside from that, users will also be able to view how bright is their home is. Last but not least, we also have an RFID feature that allows user to access their door with a access card instead of the traditional way of using keys. The door will be open for 5 seconds and after that the door will be locked automatically. We also made a function that allows users to view real time values of their humidity, light and temperture level. 
 
-## B. How the final RPI set-up looks like
-
 ## C. Wep Application 
 
-[](Images/Graph.jpeg)
+[](/Images/Web%20Ui.jpeg)
