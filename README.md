@@ -12,7 +12,7 @@ ST 0324 Internet of Things (IOT)
 
 - Section 1 Overview of Smart Home
 - Section 2 Hardware required
-- Section 3 Hardware setup
+- Section 3 Hardware Diagram
 - Section 4 Create a “Thing”
 - Section 5 DynamoDB Setup
 - Section 7 Reading RFID/NFC tags setup
@@ -31,7 +31,6 @@ Smart Home enables users to remotely monitor and manage applicances such as ligh
 ```
 Final Set-up
 ```
-
 ![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/Setup.jpeg)
 
 ## C. Web Application 
@@ -84,8 +83,13 @@ This module can read/write to tags and cards and also "act" like a NFC tag. The 
 
 We use the RPI camera module to take pictures and it will upload to AWS cloud service (S3 bucket). The camera has a function to detect general object such as humans, bottle etc.
 
-
 ![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/RPI%20Module.jpg)
+
+## Section 3 Hardware Diagram
+
+In this section, The Fritzing iagram shows all the necessary components described in Section 2.
+
+![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/Fritzing.png)
 
 ## Section 4 Create a “Thing”
 
@@ -111,6 +115,13 @@ Select create certificate and you will be redirected to the following page. Down
 four files. As for the root CA, download the Amazon Root CA3
 
 ![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/SetupofThing5.PNG)
+
+## Section 5 DynamoDB Setup
+
+#### DynamoDB
+
+First, navigate to DynamoDB within the AWS website by clicking on services, then
+DynamoDB. Click create table.
 
 ![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/SetupofThing6.PNG)
 
@@ -145,3 +156,36 @@ Go to certificates under secure section. Select the certificate you created prev
 and click attach policy. Attach the policy you created previously.
 
 ![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/SetupofThing14.PNG)
+
+#### Create AWS Role
+
+Run the following command on your Raspberry Pi to install the AWS Command-line client on your Raspberry Pi
+
+```
+sudo pip install awscli --upgrade --user
+```
+Edit the .profile to include the path of the AWS client
+
+```
+sudo nano ~/.profile
+```
+
+Add in the following code after the last line and save the file
+
+```
+export PATH=~/.local/bin:$PATH
+```
+
+Type the following command at the command-line prompt to make the new settings take effect immediately
+
+```
+source ~/.profile
+```
+Type the following command to install the AWS Command-Line Interface Client on your Raspberry Pi
+
+```
+sudo pip install awscli
+```
+Copy down your AWS educate’s Access Key ID and Secret Access Key ID.
+
+![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/AWS.PNG)
