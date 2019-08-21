@@ -48,14 +48,11 @@ Our application has several functions that requires specific hardware and below 
 
 An LDR is a component that has a (variable) resistance that changes with the light intensity that falls upon it. This allows them to be used to sense light values. We will use this hardware to sense the light values of the surroundings.
 
-
 ![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/ldr.jpg)
-
 
 **2 Analog to Digital converters (MCP3008)**
 
 The Raspberry Pi has no built in analogue inputs which means it makes it difficult to use many of the available sensors, with this converter it helps to convert analog to digital signals for the RPI.
-
 
 ![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/MCP3008.jpg)
 
@@ -63,8 +60,15 @@ The Raspberry Pi has no built in analogue inputs which means it makes it difficu
 
 The LED lights indicates whether the lights are on or off. Insert the LED with the anode (long leg) towards the board.
 
-
 ![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/LED.jpg)
+
+**8 Resistors (4 x 330 Ω Resistors, 4 x 10K Ω Resistor)**
+
+Resistors help with the current flow and to prevent the Raspberry Pi from being damaged.
+
+![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/330.jpg)
+
+![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/10k%20Resistor.jpg)
 
 **2 DHT Sensors**
 
@@ -290,7 +294,7 @@ sudo nano ~/iotca2/MFRC522.py
 ```
 ## Section 7 Program setup
 
-To ensure that the guide is not to wordy, we won't be explain all the codes that we did for the project. Instead we will zip all the files needed for this project.
+To ensure that the guide is not to wordy, we won't be explain all the codes that we did for the project. Instead we will zip all the files needed for this project. 
 
 ### Installing Necessary Libraries
 
@@ -313,6 +317,8 @@ sudo pip install --upgrade pip
 ```
 
 ## Section 8 Expected results
+
+To view our project video please visit this link https://youtu.be/43--SwQEI5I
 
 **LED Light** Lights can be turn on and off by using the web interface. Note that toilet light will only be turned on when the envirionment is dark.
 
