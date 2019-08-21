@@ -32,6 +32,11 @@ Final Set-up
 ```
 ![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/Setup.jpeg)
 
+```
+Overview of SmartHome internally
+```
+![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/Architecture.PNG)
+
 ## C. Web Application 
 
 ![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/Web%20UI.jpeg)
