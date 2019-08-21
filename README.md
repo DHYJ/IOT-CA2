@@ -15,11 +15,10 @@ ST 0324 Internet of Things (IOT)
 - Section 3 Hardware Diagram
 - Section 4 Create a “Thing”
 - Section 5 DynamoDB Setup
-- Section 7 Reading RFID/NFC tags setup
-- Section 8 Program setup
-- Section 9 Web interface setup
-- Section 10 Expected outcome
-- Section 11 References
+- Section 6 Reading RFID/NFC tags setup
+- Section 7 Program setup
+- Section 8 Expected outcome
+
 
 # Section 1 Overview of Smart Home
 ## A. What is Smart Home about?
@@ -116,13 +115,6 @@ four files. As for the root CA, download the Amazon Root CA3
 
 ![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/SetupofThing5.PNG)
 
-## Section 5 DynamoDB Setup
-
-#### DynamoDB
-
-First, navigate to DynamoDB within the AWS website by clicking on services, then
-DynamoDB. Click create table.
-
 ![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/SetupofThing6.PNG)
 
 ![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/SetupofThing7.PNG)
@@ -189,3 +181,149 @@ sudo pip install awscli
 Copy down your AWS educate’s Access Key ID and Secret Access Key ID.
 
 ![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/AWS.PNG)
+
+## Section 5 DynamoDB Setup
+
+#### DynamoDB
+
+First, Go to DynamoDB within the AWS website by clicking on services, then
+DynamoDB. Click create table.
+
+![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/DynamoDB1.png)
+
+Enter the table name and the primary key, then click create.
+
+![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/DynamoDB2.PNG)
+
+Next, go back to IoT Core within the AWS website by clicking on services, then IoT
+Core. Click Act, then create button at the top right corner.
+
+![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/DynamoDB3.PNG)
+
+Create the rule with the name “iotdata”.
+
+![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/DynamoDB4.PNG)
+
+Under Set one or more actions section, choose add action, select “split message into multiple
+columns of a database table”. Select configure action. Under table name, select the
+“iotdata” table. Under IAM role name, select the role you created previously, “iotlab11role”. For mine i'm using back an old role. Click add action, then create rule.
+
+![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/DynamoDB5.PNG)
+
+Now that we had created the rules, we can add items to the data
+table. Navigate to the test section of IoT Core in AWS.
+
+![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/DynamoDB6.PNG)
+
+Scroll down to Publish. Enter the topic “sensors/light”. Enter the following in the text
+field below:
+
+```
+{
+“deviceid”: "HomeMonitor",
+“Light”: “”
+}
+```
+The data is in the iot table.
+
+![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/DynamoDB.jpeg)
+
+## Section 6 Reading RFID/NFC tags setup
+
+#### Enable SPI and prepare the MFRC522 libraries
+
+If your raspberry pi is new, you will need to configure it with the MFRC522 libraries, you can follow the following
+instructions to set it up.
+
+##### << Enable SPI via raspi-config >>
+
+Run raspi-config, choose menu item “5 Interfacing Options” and enable SPI.
+
+```
+sudo rasp-config
+```
+![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/Facial.png)
+![Alt text](https://github.com/DHYJ/IOT-CA2/blob/master/Images/Facial2.png)
+
+##### << Enable device tree in boot.txt>>
+
+Modify the /boot/config.txt to enable SPI
+
+```
+sudo nano /boot/config.txt
+```
+
+Ensure these lines are included in config.txt
+
+```
+device_tree_param=spi=on
+dtoverlay=spi-bcm2835
+```
+
+**<< Install Python-dev>>**
+
+Install the Python development libraries
+
+```
+sudo apt-get install python-dev
+```
+
+**<< Install SPI-Py Library >>**
+
+Set up the SPI Python libraries 
+```
+git clone https://github.com/lthiery/SPI-Py.git
+cd /home/pi/SPI-Py
+sudo python setup.py install
+```
+
+**<< Install RFID library >>**
+
+Clone the MFRC522-python library and copy out the required files to your project directory
+```
+git clone https://github.com/rasplay/MFRC522-python.git
+cd MFRC52 2 - python
+```
+Edit the MFRC522.py file that you just cloned from GitHub.
+```
+sudo nano ~/iotca2/MFRC522.py
+```
+## Section 7 Program setup
+
+To ensure that the guide is not to wordy, we won't be explain all the codes that we did for the project. Instead we will zip all the files needed for this project.
+
+### Installing Necessary Libraries
+
+Install Mosquitto using the command below.
+
+```
+sudo apt-get install mosquitto mosquitto-clients
+```
+To run Node Red using the command below.
+
+```
+Node-red start
+```
+Install the AWS Python library
+
+```
+sudo pip install --upgrade --force-reinstall pip==9.0.3
+sudo pip install AWSIoTPythonSDK --upgrade --disable-pip-version-check
+sudo pip install --upgrade pip
+```
+
+## Section 8 Expected results
+
+**LED Light** Lights can be turn on and off by using the web interface. Note that toilet light will only be turned on when the envirionment is dark.
+
+**Humidity** DHT sensor will sense the humidity and temperture level will be reflected on the web and data will be stored in DynamoDB 
+
+**Camera** Camera will be able to take pictures and detect if its an object or human and results will be displayed as well.
+
+**RFID** User can scan the card to unlock the door
+
+**Website** Website allows user to view real time values and turning off and on their lights. Apart from that, they will also be able to control the camera function and view the door status.
+
+```
+-- End of CA2 Step-by-step tutorial --
+```
